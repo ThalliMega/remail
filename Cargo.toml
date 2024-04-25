@@ -1,0 +1,26 @@
+[package]
+name = "remail"
+version = "0.1.0"
+edition = "2021"
+authors = ["Thallium Megalovania"]
+description = "A simple command line tool that uses gnupg to sign email and then send it to a smtp server. Reads email body from stdin. Email format: https://docs.rs/lettre/latest/lettre/message/struct.Mailbox.html"
+repository = "https://github.com/thallimega/remail.git"
+license = "AGPL-3.0-or-later"
+keywords = ["email", "dkim", "gnupg", "gpgme"]
+categories = ["email", "command-line-utilities"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.5.4", features = ["derive", "env"] }
+lettre = { version = "0.11.7", default-features = false, features = [
+    "builder",
+    "dkim",
+    "smtp-transport",
+    "native-tls",
+    "gpgme",
+] }
+gpgme = "0.11"
+
+[patch.crates-io]
+lettre = { git = "https://github.com/thallimega/lettre.git" }
